@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package format="1">
+  <name>tagloc</name>
+  <version>1.0.0</version>
+  <description>The tagloc package</description>
+  <maintainer email="noyanerdin.k@milvusrobotics.com">nekilic</maintainer>
+  <license>TODO</license>
+  <author email="noyanerdin.k@milvusrobotics.com">Noyan Erdin Kilic</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  <build_depend>tf2</build_depend>
+  <build_depend>tf2_ros</build_depend>
+  <build_depend>visualization_msgs</build_depend>
+  <build_depend>message_generation</build_depend>
+  <build_depend>tf2_geometry_msgs</build_depend>
+  <build_depend>tf2_eigen</build_depend>
+
+  <run_depend>roscpp</run_depend>
+  <run_depend>tf2</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+  <run_depend>tf2_ros</run_depend>
+  <run_depend>visualization_msgs</run_depend>
+  <run_depend>message_generation</run_depend>
+  <run_depend>tf2_geometry_msgs</run_depend>
+  <run_depend>tf2_eigen</run_depend>
+
+</package>
