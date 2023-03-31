@@ -12,6 +12,7 @@ find_package(catkin REQUIRED
   tf2_geometry_msgs
   tf2_eigen
   visualization_msgs
+  tag_master
 )
 
 # find_package(Boost REQUIRED COMPONENTS system)
@@ -56,6 +57,7 @@ catkin_package(
  INCLUDE_DIRS
  ${PROJECT_SOURCE_DIR}/include
  LIBRARIES
+  tagloc
  CATKIN_DEPENDS
   roscpp
   geometry_msgs
@@ -64,6 +66,7 @@ catkin_package(
   tf2_geometry_msgs
   tf2_eigen
   visualization_msgs
+  tag_master
  DEPENDS
 )
 
@@ -73,8 +76,12 @@ include_directories(
 )
 
 add_executable(tagloc_node src/tagloc_node.cpp)
-add_dependencies(tagloc_node ${catkin_LIBRARIES})
-target_link_libraries(tagloc_node ${catkin_LIBRARIES})
+add_dependencies(tagloc_node ${catkin_LIBRARIES} tagloc)
+target_link_libraries(tagloc_node ${catkin_LIBRARIES} tagloc)
+
+add_library(tagloc src/tagloc.cpp)
+add_dependencies(tagloc ${catkin_LIBRARIES})
+target_link_libraries(tagloc ${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}

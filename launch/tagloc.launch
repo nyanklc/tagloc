@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<launch>
+    <arg default="noyan_robot" name="robot_name"/>
+    <arg default="/$(arg robot_name)" name="namespace"/>
+    <node name="tagloc_node" type="tagloc_node" ns ="$(arg robot_name)" pkg="tagloc" output="screen"></node>
+</launch>
