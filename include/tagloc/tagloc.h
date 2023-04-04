@@ -16,15 +16,14 @@
 #include <unordered_map>
 #include <vector>
 
-#include "../src/etc.h"
-
 namespace tagloc {
 struct TagKey {
    public:
-    TagKey(uint32_t id, int32_t shape, int32_t type) {
+    TagKey(uint32_t id, int32_t shape, int32_t type, std::string obj_name) {
         id_ = id;
         shape_ = shape;
         type_ = type;
+        obj_name_ = obj_name;
     }
 
     uint32_t id() const {
@@ -37,6 +36,10 @@ struct TagKey {
 
     int32_t type() const {
         return type_;
+    }
+
+    std::string name() const {
+        return obj_name_;
     }
 
     bool operator==(const TagKey &other) const {
@@ -55,6 +58,7 @@ struct TagKey {
     uint32_t id_;
     int32_t shape_;
     int32_t type_;
+    std::string obj_name_;
 };
 
 // hash for TagKey (we have unique ids, so we simply use the ids as the hash function)
@@ -62,6 +66,11 @@ struct TagKeyHasher {
     size_t operator()(const TagKey &key) const {
         return (size_t)key.id();
     }
+};
+
+enum TaglocStates {
+    SAVE_TAG_LOCATIONS,
+    PUBLISH_ROBOT_POSE,
 };
 
 class TagLoc {
@@ -72,7 +81,9 @@ class TagLoc {
 
     void detectionsCallback(const tag_master::TagPose &msg);
 
-    void publishRobotPose(ros::Publisher &map_pub, ros::Publisher &odom_pub);
+    void setState(int newState);
+
+    void printSaved();
 
    private:
     tf2_ros::Buffer *tf2_buffer_;
@@ -83,6 +94,9 @@ class TagLoc {
     std::mutex object_map_mutex_;
 
     std::string map_frame_id_;
+
+    std::mutex state_mutex_;
+    int state_;
 };
 }  // namespace tagloc
 

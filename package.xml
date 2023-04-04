@@ -23,7 +23,7 @@
   <run_depend>geometry_msgs</run_depend>
   <run_depend>tf2_ros</run_depend>
   <run_depend>visualization_msgs</run_depend>
-  <run_depend>message_generation</run_depend>
+  <run_depend>message_runtime</run_depend>
   <run_depend>tf2_geometry_msgs</run_depend>
   <run_depend>tf2_eigen</run_depend>
   <run_depend>tag_master</run_depend>
